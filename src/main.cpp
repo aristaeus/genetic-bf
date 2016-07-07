@@ -1,16 +1,24 @@
+#include <fstream>
 #include <iostream>
+#include <string>
 #include "bfint.hpp"
 
 int main(){
-    int code[] = { '+','+','+','+','+','+','+','+','[','>','+','+','+','+','[','>','+','+','>','+','+','+','>','+','+','+','>','+','<','<','<','<','-',']','>','+','>','+','>','-','>','>','+','[','<',']','<','-',']','>','>','.','>','-','-','-','.','+','+','+','+','+','+','+','.','.','+','+','+','.','>','>','.','<','-','.','<','.','+','+','+','.','-','-','-','-','-','-','.','-','-','-','-','-','-','-','-','.','>','>','+','.','>','+','+','.'};
-    // int code[] = { '+','+','+','+','+','+','+','+','[','-','>','+','<',']','.','>','.' };
-    int input[100] = {0};
-    int output[100] = {0};
+    std::string code;
+    std::string line;
+    std::ifstream file("file");
+    while(getline(file,line))
+        code += line;
 
-    run_bf(code,input,output,sizeof(code)/sizeof(int));
-    for(int i = 0; i < 15; i++){
-        std::cout<<(char)output[i];
-    }
+    std::vector<int> input;
+    input.push_back('a');
+    input.push_back('b');
+    input.push_back('o');
+    input.push_back('n');
+
+    BFProgram bf;
+    bf.init(code);
+    bf.run(&input);
 
     return 0;
 }
