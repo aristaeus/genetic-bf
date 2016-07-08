@@ -13,6 +13,8 @@ BFProgram::init(std::string code){
 void
 BFProgram::run(std::vector<int>* input){
     int instr = 0;
+    int total_instr = 0;
+    const int max_instr = 10000000;
     int inp_ctr = 0;
     int stack[10000] = {0};
     int ptr = 0;
@@ -56,9 +58,40 @@ BFProgram::run(std::vector<int>* input){
                 instr = braces[instr];
         }
         instr++;
+        total_instr++;
+        if(total_instr < max_instr)
+            std::cout<<"error: infinite loop?"<<std::endl;
     }
 
     for(int i = 0; i < output.size(); i++){
         std::cout<<(char)output[i];
     }
+}
+
+void
+GeneAlgo::run_generation(int num){
+    for(int i = 0; i < num; i++){
+        
+    }
+}
+
+int
+GeneAlgo::get_fitness(){
+    auto it = programs.end();
+    return it->first;
+}
+
+int
+SumAlgo::fitness(BFProgram bf){
+    std::vector<int> input {2, 5};
+    bf.run(&input);
+
+}
+
+void
+SumAlgo::breed(){
+}
+
+void
+SumAlgo::mutate(){
 }

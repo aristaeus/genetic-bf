@@ -1,7 +1,7 @@
 CC=g++
 OUT=brainfuck
 LIB=
-CXXFLAGS=-g -Wall -Wextra
+CXXFLAGS=-g -Wall -Wextra -std=c++11
 BUILDIR=build/
 SRCDIR=src/
 INCDIR=include/
