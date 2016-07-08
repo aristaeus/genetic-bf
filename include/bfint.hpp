@@ -2,20 +2,27 @@
 #define BFINT_HPP
 
 #include <map>
+#include <random>
 #include <vector>
 
+#define NUM_PROGRAMS 1000
+
 class BFProgram{
-    std::string code;
     public:
+    std::string code;
+    int fitness;
     void init(std::string code);
-    void run(std::vector<int>* input);
+    std::vector<int>run(std::vector<int>* input);
 };
 
 class GeneAlgo{
-    virtual int fitness(BFProgram bf);
+    protected:
+    virtual void fitness(BFProgram* bf);
     virtual void breed();
     virtual void mutate();
-    std::map<int,BFProgram> programs;
+    std::array<BFProgram,NUM_PROGRAMS> programs;
+    std::mt19937 rand;
+    char bf_char();
 
     public:
     virtual void init();
@@ -27,9 +34,7 @@ class GeneAlgo{
 };
 
 class SumAlgo: public GeneAlgo{
-    int fitness(BFProgram bf);
-    void breed();
-    void mutate();
+    void fitness(BFProgram* bf);
 
     public:
     void init();
